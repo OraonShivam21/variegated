@@ -3,3 +3,34 @@
 2. Use the qr-image npm package to turn the user entered URL into a QR code image.
 3. Create a txt file to save the user input using the native fs node module.
 */
+
+// const inquirer = require("inquirer");
+// const qr = require("qr-image");
+// const fs = require("fs");
+
+import inquirer from "inquirer";
+import qr from "qr-image";
+import fs from "fs";
+
+const jsonData = fs.readFileSync("id.json");
+const data = JSON.parse(jsonData);
+
+const id = data[0].id;
+
+inquirer
+  .prompt([{ message: "Enter your URL:", name: "URL" }])
+  .then((answers) => {
+    const url = answers.URL;
+    var qr_svg = qr.image(url);
+    qr_svg.pipe(fs.createWriteStream(`./qr_codes/qr_svg${id}.png`));
+    data[0].id = id + 1;
+    fs.writeFileSync("id.json", JSON.stringify(data, null, 2));
+
+    fs.appendFile("URL.txt", `${url}\n`, (err) => {
+      if (err) throw err;
+      console.log("The file has been saved!");
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+  });
