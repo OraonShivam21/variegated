@@ -1,6 +1,14 @@
-import express from "express";
-import morgan from "morgan";
-import bodyParser from "body-parser";
+// import express from "express";
+// import morgan from "morgan";
+// import bodyParser from "body-parser";
+// import fs from "fs";
+// import path from "path";
+
+const express = require("express");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
 const port = 3000;
@@ -9,7 +17,12 @@ app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(morgan("combined"));
+const logStream = fs.createWriteStream(
+  path.join(__dirname, "combined_log.txt"),
+  { flags: "a" }
+);
+
+app.use(morgan("combined", { stream: logStream }));
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Home" });
