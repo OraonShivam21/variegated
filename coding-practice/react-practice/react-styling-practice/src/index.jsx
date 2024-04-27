@@ -6,8 +6,29 @@
 //Dynamically change the color of the h1 using inline css styles.
 //Morning = red, Afternoon = green, Night = blue.
 
-// If you're running this locally in VS Code use the commands:
-// npm install
-// to install the node modules and
-// npm run dev
-// to launch your react project in your browser
+import React from "react";
+import ReactDOM from "react-dom";
+
+const time = new Date("1995-12-25T23:15:30").getHours();
+const greeting = {
+    message: "",
+    color: "",
+};
+
+if(time >= 0 && time < 12) {
+    greeting.message = "Good Morning";
+    greeting.color = "red";
+} else if(time >= 12 && time < 18) {
+    greeting.message = "Good Afternoon";
+    greeting.color = "green";
+} else {
+    greeting.message = "Good Evening";
+    greeting.color = "blue";
+}
+
+ReactDOM.render(
+  <div>
+    <h1 className="heading" style={{color: greeting.color}}>{greeting.message}</h1>
+  </div>,
+  document.getElementById("root")
+);
