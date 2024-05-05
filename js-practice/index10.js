@@ -46,3 +46,16 @@ for (const [classCategory, studentsOfClass] of Object.entries(studentClassed)) {
 }
 
 console.log(studentsWithMinAge);
+
+// finding avg age for each class
+const avgAgeByClass = {};
+for (const [classCategory, studentsOfClass] of Object.entries(studentClassed)) {
+  const totalAge = studentsOfClass.reduce(
+    (acc, student) => acc + student.age,
+    0
+  );
+  const averageAge = totalAge / studentsOfClass.length;
+  avgAgeByClass[classCategory] = averageAge;
+}
+
+console.log(avgAgeByClass);
