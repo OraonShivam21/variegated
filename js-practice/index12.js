@@ -22,3 +22,9 @@ var arr3 = [10, 20, 30, 40, 50];
 console.log("Before deleting:", arr3);
 arr3.length = 0;
 console.log("After deleting:", arr3);
+
+// 4. How would you check if a number is an integer?
+var num = 432;
+console.log("Is integer:", Number.isInteger(num)); // method 1
+console.log("Is integer:", num % 1 === 0); // method 2
+console.log(num % 1);
