@@ -54,7 +54,14 @@ console.log(duplicate([1, 2, 3, 4, 5]));
 
 // method 2: converting to string and then reversing
 function reverseNum(num) {
-    return Number(num.toString().split("").reverse().join(""));
+  return Number(num.toString().split("").reverse().join(""));
 }
 
 console.log(reverseNum(54321));
+
+// 7. Write a JS functions that checks whether a passed string is palindrome or not
+function isPalindrome(str) {
+  return str === str.split("").reverse().join("");
+}
+var str = "ababa";
+console.log(`${str} isPalindrome:`, isPalindrome(str));
