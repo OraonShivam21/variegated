@@ -32,8 +32,23 @@ console.log(num % 1);
 // 5. Make this work:
 // duplicate([1, 2, 3, 4, 5]) ==> [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
 function duplicate(arr) {
-    // return [...arr, ...arr]; // method 1
-    return arr.concat(arr); // method 2
+  // return [...arr, ...arr]; // method 1
+  return arr.concat(arr); // method 2
 }
 
 console.log(duplicate([1, 2, 3, 4, 5]));
+
+// 6. Write a JS function to reverse a number.
+function reverseNum(num) {
+  let reversed = 0;
+
+  while(num != 0) {
+    let digit = num % 10;
+    reversed = reversed * 10 + digit;
+    num = Math.floor(num / 10);
+  }
+
+  return reversed;
+}
+
+console.log(reverseNum(12));
