@@ -28,3 +28,11 @@ var num = 432;
 console.log("Is integer:", Number.isInteger(num)); // method 1
 console.log("Is integer:", num % 1 === 0); // method 2
 console.log(num % 1);
+
+// 5. Make this work:
+// duplicate([1, 2, 3, 4, 5]) ==> [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+function duplicate(arr) {
+    return [...arr, ...arr];
+}
+
+console.log(duplicate([1, 2, 3, 4, 5]));
