@@ -39,16 +39,22 @@ function duplicate(arr) {
 console.log(duplicate([1, 2, 3, 4, 5]));
 
 // 6. Write a JS function to reverse a number.
+// method 1: using a loop and reversing
+// function reverseNum(num) {
+//   let reversed = 0;
+
+//   while(num != 0) {
+//     let digit = num % 10;
+//     reversed = reversed * 10 + digit;
+//     num = Math.floor(num / 10);
+//   }
+
+//   return reversed;
+// }
+
+// method 2: converting to string and then reversing
 function reverseNum(num) {
-  let reversed = 0;
-
-  while(num != 0) {
-    let digit = num % 10;
-    reversed = reversed * 10 + digit;
-    num = Math.floor(num / 10);
-  }
-
-  return reversed;
+    return Number(num.toString().split("").reverse().join(""));
 }
 
-console.log(reverseNum(12));
+console.log(reverseNum(54321));
