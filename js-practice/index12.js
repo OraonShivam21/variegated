@@ -32,7 +32,8 @@ console.log(num % 1);
 // 5. Make this work:
 // duplicate([1, 2, 3, 4, 5]) ==> [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
 function duplicate(arr) {
-    return [...arr, ...arr];
+    // return [...arr, ...arr]; // method 1
+    return arr.concat(arr); // method 2
 }
 
 console.log(duplicate([1, 2, 3, 4, 5]));
