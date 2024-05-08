@@ -125,3 +125,26 @@ const obj = [
 ];
 
 console.log(getMaleOnlyObjs(obj));
+
+// 13. Write a JS function to find the most frequent item of an array
+function findMostFrequent(arr) {
+  let freq = {};
+  arr.forEach((item) => {
+    freq[item] = freq[item] ? freq[item] + 1 : 1;
+  });
+  
+  // let item = "", f = 0;
+  // for(let props in Object.keys(freq)) {
+  //   if(freq[props] > f) {
+  //     f = freq[props];
+  //     item = props;
+  //   }
+  // }
+
+  // return item;
+  // OR
+  return Object.keys(freq).reduce((acc, next) => freq[acc] > freq[next] ? acc : next);
+}
+
+const freqArr = [1, 2, 2, 3, 3, 3, 4];
+console.log("Most frequent:", findMostFrequent(freqArr));
