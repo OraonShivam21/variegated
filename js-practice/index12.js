@@ -65,3 +65,10 @@ function isPalindrome(str) {
 }
 var str = "ababa";
 console.log(`${str} isPalindrome:`, isPalindrome(str));
+
+// 8. Write a JS function that returns a passed string with letters in alphabetical order.
+function sortString(str) {
+  return str.split("").sort().join("");
+}
+
+console.log(sortString("mississippi"));
