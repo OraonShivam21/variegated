@@ -72,3 +72,13 @@ function sortString(str) {
 }
 
 console.log(sortString("mississippi"));
+
+// 9. Write a JS function that accepts a string as a parameter and converts the first letter of each word of the string in upper case
+function firstLetterUpper(str) {
+  return str
+    .split(" ")
+    .map((word) => word.substring(0, 1).toUpperCase() + word.substring(1))
+    .join(" ");
+}
+var str = "i want to do this kind of thing";
+console.log(firstLetterUpper(str));
