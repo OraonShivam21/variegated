@@ -153,7 +153,7 @@ console.log("Most frequent:", findMostFrequent(freqArr));
 
 // 14. Write a JS function to shuffle an array.
 function shuffleArray(arr) {
-  for(let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     let rInd = Math.floor(Math.random() * arr.length);
     let temp = arr[i];
     arr[i] = arr[rInd];
@@ -164,3 +164,21 @@ function shuffleArray(arr) {
 const shuffArr = [1, 2, 3, 4, 5, 6];
 shuffleArray(shuffArr);
 console.log("Shuffled array:", shuffArr);
+
+// 15. Write a JS function to compute the union of two arrays.
+// method 1
+// function unionArray(nums1, nums2) {
+//   nums2.forEach((item) => {
+//     if (!nums1.includes(item)) nums1.push(item);
+//   });
+//   return nums1;
+// }
+
+// method 2
+function unionArray(num1, num2) {
+  return [...new Set(nums1.concat(nums2))];
+}
+
+const nums1 = [1, 2, 3];
+const nums2 = [100, 2, 1, 10];
+console.log("Union of array:", unionArray(nums1, nums2));
