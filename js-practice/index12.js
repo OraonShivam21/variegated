@@ -132,7 +132,7 @@ function findMostFrequent(arr) {
   arr.forEach((item) => {
     freq[item] = freq[item] ? freq[item] + 1 : 1;
   });
-  
+
   // let item = "", f = 0;
   // for(let props in Object.keys(freq)) {
   //   if(freq[props] > f) {
@@ -143,8 +143,24 @@ function findMostFrequent(arr) {
 
   // return item;
   // OR
-  return Object.keys(freq).reduce((acc, next) => freq[acc] > freq[next] ? acc : next);
+  return Object.keys(freq).reduce((acc, next) =>
+    freq[acc] > freq[next] ? acc : next
+  );
 }
 
 const freqArr = [1, 2, 2, 3, 3, 3, 4];
 console.log("Most frequent:", findMostFrequent(freqArr));
+
+// 14. Write a JS function to shuffle an array.
+function shuffleArray(arr) {
+  for(let i = 0; i < arr.length; i++) {
+    let rInd = Math.floor(Math.random() * arr.length);
+    let temp = arr[i];
+    arr[i] = arr[rInd];
+    arr[rInd] = temp;
+  }
+}
+
+const shuffArr = [1, 2, 3, 4, 5, 6];
+shuffleArray(shuffArr);
+console.log("Shuffled array:", shuffArr);
