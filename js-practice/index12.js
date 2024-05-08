@@ -82,3 +82,22 @@ function firstLetterUpper(str) {
 }
 var str = "i want to do this kind of thing";
 console.log(firstLetterUpper(str));
+
+// 10. Write a JS function which accepts an argument and returns the type.
+// Note: There are six possible values that typeof returns - object, function, boolean, string, number, and undefined.
+function getType(val) {
+  if(val === null)
+    return "null";
+  if(Array.isArray(val))
+    return "array";
+  if(typeof val === "object")
+    return "object";
+  if(typeof val === "undefined")
+    return "undefined";
+  if(typeof val === "function")
+    return "function";
+  return typeof val;
+}
+
+var val = [1, 2];
+console.log(`typeof ${val} is`, getType(val));
