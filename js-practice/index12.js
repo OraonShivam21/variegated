@@ -101,3 +101,17 @@ function getType(val) {
 
 var val = [1, 2];
 console.log(`typeof ${val} is`, getType(val));
+
+// 11. Write a JS function to get the number of occurrences of each letter in specified string.
+function occurrencesOfLetters(str) {
+  const result = {};
+
+  str.split("").forEach(letter => {
+    result[letter] = result[letter] ? result[letter] + 1 : 1;
+  });
+
+  return result;
+}
+
+var str = "shababobo";
+console.log(`Occurrences in ${str} are:`, occurrencesOfLetters(str));
