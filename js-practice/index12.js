@@ -86,16 +86,11 @@ console.log(firstLetterUpper(str));
 // 10. Write a JS function which accepts an argument and returns the type.
 // Note: There are six possible values that typeof returns - object, function, boolean, string, number, and undefined.
 function getType(val) {
-  if(val === null)
-    return "null";
-  if(Array.isArray(val))
-    return "array";
-  if(typeof val === "object")
-    return "object";
-  if(typeof val === "undefined")
-    return "undefined";
-  if(typeof val === "function")
-    return "function";
+  if (val === null) return "null";
+  if (Array.isArray(val)) return "array";
+  if (typeof val === "object") return "object";
+  if (typeof val === "undefined") return "undefined";
+  if (typeof val === "function") return "function";
   return typeof val;
 }
 
@@ -106,7 +101,7 @@ console.log(`typeof ${val} is`, getType(val));
 function occurrencesOfLetters(str) {
   const result = {};
 
-  str.split("").forEach(letter => {
+  str.split("").forEach((letter) => {
     result[letter] = result[letter] ? result[letter] + 1 : 1;
   });
 
@@ -115,3 +110,18 @@ function occurrencesOfLetters(str) {
 
 var str = "shababobo";
 console.log(`Occurrences in ${str} are:`, occurrencesOfLetters(str));
+
+// 12. Loop and array of objects and remove all objects which don't have gender's value as male.
+function getMaleOnlyObjs(obj) {
+  return obj.filter((ob) => ob.gender === "male");
+}
+
+const obj = [
+  { name: "Abhishesh", age: 31, gender: "male" },
+  { name: "Aradhya", age: 31, gender: "female" },
+  { name: "Akriti", age: 31, gender: "female" },
+  { name: "Aryan", age: 31, gender: "male" },
+  { name: "Akanksha", age: 31, gender: "female" },
+];
+
+console.log(getMaleOnlyObjs(obj));
