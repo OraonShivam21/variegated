@@ -13,8 +13,8 @@ function isit(num) {
 }
 
 console.log(`outside db connection`);
-console.log(isit(10))
+console.log(isit(10));
 
-    (() => {
-        console.log(`db connected three`);
-    })()
+(() => {
+    console.log(`db connected three`);
+})();
