@@ -17,7 +17,6 @@
         border: 1px solid black;
       }
     </style>
-    <link rel="stylesheet" href="../styles.css" />
   </head>
 
   <body>
@@ -46,6 +45,21 @@
       drawCircle(x, y, size);
 
       // Add your code here
+      canvas.addEventListener("keydown", (e) => {
+        if(e.key === "w") {
+            y -= 10;
+            drawCircle(x, y, size);   
+        } else if(e.key === "s") {
+            y += 10;
+            drawCircle(x, y, size);
+        } else if(e.key === "a") {
+            x -= 10;
+            drawCircle(x, y, size);
+        } else if(e.key === "d") {
+            x += 10;
+            drawCircle(x, y, size);
+        }
+      })
     </script>
   </body>
 </html>
