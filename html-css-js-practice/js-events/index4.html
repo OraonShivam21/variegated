@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events - SetTimeout and SetInterval</title>
+  </head>
+  <body>
+    <h1>Events - Setimeout and SetInterval</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <pre id="text"></pre>
+  </body>
+  <script>
+    const start = document.querySelector("#start");
+    const stop = document.querySelector("#stop");
+    const text = document.querySelector("#text");
+    let intervalRef;
+
+    start.addEventListener("click", (e) => {
+      intervalRef = setInterval(
+        (str) => {
+          const newText = document.createElement("p");
+          newText.textContent = str;
+          text.appendChild(newText);
+        },
+        500,
+        "Hello World!"
+      );
+    });
+
+    stop.addEventListener("click", (e) => {
+      clearInterval(intervalRef);
+    });
+  </script>
+</html>
