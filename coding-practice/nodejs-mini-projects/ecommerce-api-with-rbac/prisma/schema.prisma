@@ -105,7 +105,7 @@ model Review {
     id          String          @id @default(auto()) @map("_id") @db.ObjectId
     userId      String          @db.ObjectId
     productId   String          @db.ObjectId
-    rating      Int             @min(1) @max(5)
+    rating      Int
     comment     String?
     createdAt   DateTime        @default(now())
 
