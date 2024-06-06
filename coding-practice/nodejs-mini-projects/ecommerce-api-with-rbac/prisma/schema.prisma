@@ -1,0 +1,100 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("MONGODB_DATABASE_URI")
+}
+
+model User {
+    id          String          @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    email       String          @unique
+    password    String
+    roleId      String          @db.ObjectId
+    address     Address
+    createdAt   DateTime        @default(now())
+
+    role        Role            @relation(fields: [roleId], references: [id])
+}
+
+model Role {
+    id          String          @id @default(auto()) @map("_id") @db.ObjectId
+    name        String          @unique
+    permissions String[]
+}
+
+type Address {
+    street      String
+    city        String
+    state       String
+    country     String
+    zip         String
+}
+
+model Product {
+    id          String          @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    description String
+    price       Float
+    categoryId  String          @db.ObjectId
+    stock       Int
+    images      String[]
+    createdAt   DateTime        @default(now())
+
+    category    Category        @relation(fields: [categoryId], references: [id])
+}
+
+model Category {
+    id          String          @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    description String
+    createdAt   DateTime        @default(now())
+}
+
+model Order {
+    id          String          @id @default(auto()) @map("_id") @db.ObjectId
+    userId      String          @db.ObjectId
+    items       Item[]
+    amount      Float
+    status      OrderStatus     @default(PENDING)
+    address     Address
+    createdAt   DateTime        @default(now())
+}
+
+type Item {
+    productId   String          @db.ObjectId
+    quantity    Int
+    price       Float
+
+    product     Product         @relation(fields: [productId], references: [id])
+}
+
+enum OrderStatus {
+    PENDING
+    SHIPPED
+    DELIVERED
+    CANCELLED
+}
+
+model Cart {
+    id          String          @id @default(auto()) @map("_id") @db.ObjectId
+    userId      String          @db.ObjectId
+    items       Item[]
+    createdAt   DateTime        @default(now())
+
+    user        User            @relation(fields: [userId], references: [id])
+}
+
+model Review {
+    id          String          @id @default(auto()) @map("_id") @db.ObjectId
+    userId      String          @db.ObjectId
+    productId   String          @db.ObjectId
+    rating      Int             @min(1) @max(5)
+    comment     String?
+    createdAt   DateTime        @default(now())
+
+    user        User            @relation(fields: [userId], references: [id])
+    product     Product         @relation(fields: [productId], references: [id])
+}

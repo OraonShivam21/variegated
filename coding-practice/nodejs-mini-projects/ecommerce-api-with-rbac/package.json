@@ -4,16 +4,22 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "generate": "node ./node_modules/prisma generate",
+    "server": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Shivam Oraon",
   "license": "ISC",
-  "description": "",
+  "description": "This is an ecommerce api with rbac control over the routes.",
   "dependencies": {
+    "@prisma/client": "^5.15.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.15.0"
   }
 }
