@@ -26,6 +26,7 @@ model Role {
     id          String          @id @default(auto()) @map("_id") @db.ObjectId
     name        String          @unique
     permissions String[]
+    users       User[]
 }
 
 type Address {
@@ -94,7 +95,7 @@ enum OrderStatus {
 
 model Cart {
     id          String          @id @default(auto()) @map("_id") @db.ObjectId
-    userId      String          @db.ObjectId
+    userId      String          @db.ObjectId @unique
     items       Item[]
     createdAt   DateTime        @default(now())
 
