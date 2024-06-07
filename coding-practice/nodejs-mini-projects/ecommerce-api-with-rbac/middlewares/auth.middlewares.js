@@ -29,7 +29,33 @@ const verifyToken = async (req, res, next) => {
 };
 
 const checkPermissions = (permissions) => {
-  return async (req, res, next) => {};
+  return async (req, res, next) => {
+    try {
+      if (!req.user || !req.user.role) throw "Access Denied!";
+
+      const userPermissions = (
+        await prisma.role.findUnique({
+          where: {
+            name: req.user.role,
+          },
+          select: {
+            permissions: true,
+          },
+        })
+      ).permissions;
+
+      const hasPermissions = permissions.every((permission) =>
+        userPermissions.includes(permission)
+      );
+
+      if (!hasPermissions) throw "Access Denied!";
+
+      next();
+    } catch (error) {
+      console.error(`Error while checking permission: ${error}`);
+      res.status(403).json({ error });
+    }
+  };
 };
 
 module.exports = { verifyToken, checkPermissions };
