@@ -57,7 +57,41 @@ const registerUser = async (req, res) => {
   }
 };
 
-const loginUser = async (req, res) => {};
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password)
+      throw "Please provide the relevant information for authentication!";
+
+    const userFound = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+      include: {
+        role: true,
+      },
+    });
+
+    if (!userFound || !(await bcrypt.compare(password, userFound.password)))
+      throw "Invalid Credentials!";
+
+    const accessToken = jwt.sign(
+      {
+        id: userFound.id,
+        role: userFound.role.name,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    res.cookie("accessToken", accessToken, { httpOnly: true });
+
+    res.status(200).json({ message: "Successfully logged in!" });
+  } catch (error) {
+    console.error(`Error while logging in user: ${error}`);
+    res.status(400).json({ error });
+  }
+};
 
 const getUserProfile = async (req, res) => {};
 
