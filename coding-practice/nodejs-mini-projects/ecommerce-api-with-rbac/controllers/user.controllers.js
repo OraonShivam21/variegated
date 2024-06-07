@@ -93,10 +93,35 @@ const loginUser = async (req, res) => {
   }
 };
 
-const getUserProfile = async (req, res) => {};
+const getAllUserProfiles = async (req, res) => {
+  try {
+    const usersFound = await prisma.user.findMany({
+      select: {
+        name: true,
+        email: true,
+        address: true,
+        role: true,
+        createdAt: true,
+      },
+    });
+
+    const users = usersFound.map((user) => ({
+      name: user.name,
+      email: user.email,
+      address: user.address,
+      role: user.role.name,
+      createdAt: user.createdAt,
+    }));
+
+    res.status(200).json({ users });
+  } catch (error) {
+    console.error(`Error while fetching user profiles: ${error}`);
+    res.status(400).json({ error });
+  }
+};
 
 module.exports = {
   registerUser,
   loginUser,
-  getUserProfile,
+  getAllUserProfiles,
 };
