@@ -67,9 +67,6 @@ const loginUser = async (req, res) => {
       where: {
         email,
       },
-      include: {
-        role: true,
-      },
     });
 
     if (!userFound || !(await bcrypt.compare(password, userFound.password)))
@@ -78,19 +75,45 @@ const loginUser = async (req, res) => {
     const accessToken = jwt.sign(
       {
         id: userFound.id,
-        role: userFound.role.name,
+        role: userFound.roleId,
       },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "1d" }
     );
 
-    res.cookie("accessToken", accessToken, { httpOnly: true });
+    res.cookie("accessToken", accessToken);
 
     res.status(200).json({ message: "Successfully logged in!" });
   } catch (error) {
     console.error(`Error while logging in user: ${error}`);
     res.status(400).json({ error });
   }
+};
+
+const getOwnProfile = async (req, res) => {
+  try {
+    const id = req.user.id;
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        name: true,
+        email: true,
+        address: true,
+        createdAt: true,
+      },
+    });
+
+    res.status(200).json({ user });
+  } catch (error) {
+    console.error(`Error while getting own profile: ${error}`);
+    res.status(400).json({ error });
+  }
+};
+
+const updateOwnProfile = async (req, res) => {
+  res.send("Update own profile");
 };
 
 const getAllUserProfiles = async (req, res) => {
@@ -123,5 +146,7 @@ const getAllUserProfiles = async (req, res) => {
 module.exports = {
   registerUser,
   loginUser,
+  getOwnProfile,
+  updateOwnProfile,
   getAllUserProfiles,
 };
