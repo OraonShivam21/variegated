@@ -113,7 +113,41 @@ const getOwnProfile = async (req, res) => {
 };
 
 const updateOwnProfile = async (req, res) => {
-  res.send("Update own profile");
+  try {
+    const { name, email, street, city, state, country, zip } = req.body;
+
+    const updateUser = await prisma.user.update({
+      where: {
+        id: req.user.id,
+      },
+      data: {
+        name,
+        email,
+        address: {
+          update: {
+            street,
+            city,
+            state,
+            country,
+            zip,
+          },
+        },
+      },
+      select: {
+        name: true,
+        email: true,
+        address: true,
+        createdAt: true,
+      }
+    });
+
+    res
+      .status(201)
+      .json({ message: "User updated successfully!", user: updateUser });
+  } catch (error) {
+    console.error(`Error while updating profile: ${error}`);
+    res.status(400).json({ error });
+  }
 };
 
 const getAllUserProfiles = async (req, res) => {
