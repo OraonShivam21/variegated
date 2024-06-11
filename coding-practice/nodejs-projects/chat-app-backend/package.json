@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
     "server": "nodemon src/index.js",
-    "generate": "node ./node_modules/prisma generate"
+    "generate": "node ./node_modules/prisma generate",
+    "push": "node ./node_modules/prisma db push"
   },
   "keywords": [],
   "author": "Shivam Oraon",

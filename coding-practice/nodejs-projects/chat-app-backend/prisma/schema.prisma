@@ -8,14 +8,15 @@ generator client {
 }
 
 model User {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  email    String    @unique
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  email    String   @unique
   password String
   username String
-  online   Boolean   @default(false)
-  message  Message[]
-  Room     Room?     @relation(fields: [roomId], references: [id])
-  roomId   String?   @db.ObjectId
+  online   Boolean  @default(false)
+  roomIds  String[] @db.ObjectId
+
+  messages Message[]
+  rooms    Room[]    @relation(fields: [roomIds], references: [id])
 }
 
 model Message {
@@ -30,8 +31,10 @@ model Message {
 }
 
 model Room {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  name     String?
-  users    User[]
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  name    String?
+  userIds String[] @db.ObjectId
+
+  users    User[]    @relation(fields: [userIds], references: [id])
   messages Message[]
 }
