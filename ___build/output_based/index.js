@@ -100,16 +100,66 @@
 
 // 17.
 
-console.log([] == ![]); // true - pata nhi kyun
-console.log(typeof []); // object
-console.log(typeof ![]); // boolean
-console.log(Boolean([])); // true
-console.log(Boolean(![])); // false
-console.log(Boolean([]) == Boolean(![])); // false
-console.log(true == false); // false
+// console.log([] == ![]); // true - pata nhi kyun
+// console.log(typeof []); // object
+// console.log(typeof ![]); // boolean
+// console.log(Boolean([])); // true
+// console.log(Boolean(![])); // false
+// console.log(Boolean([]) == Boolean(![])); // false
+// console.log(true == false); // false
 
 // 18.
 
 // "![]" is falsy here
-if (![]) console.log(`it is truthy`);
-else console.log(`it is falsy`);
+// if (![]) console.log(`it is truthy`);
+// else console.log(`it is falsy`);
+
+// 19.
+
+// function getNum() {
+//   return {
+//     test: 10,
+//   };
+// }
+// console.log(getNum().test); // 10
+
+// 20.
+
+// let numberArray = [1, 2];
+// delete numberArray[1];
+// console.log(numberArray); // [ 1, <1 empty item> ]
+// console.log(numberArray[1]); // undefined
+
+// 21.
+
+// console.log(
+//   (function f(n) {
+//     return n > 1 ? n * f(n - 1) : n;
+//   })(10)
+// );
+
+// 22.
+
+// let obj = {
+//   prop: 1,
+//   func: function () {
+//     return this.prop;
+//   },
+// };
+// let extractFunc = obj.func;
+// console.log(obj.func()); // 1
+// console.log(extractFunc()); // undefined - bcz the function in obj is given as reference to extractFunc thus it looses its original context for this keyword i.e. obj and thus points to the context given by extractFunc, since it has no context for this keyword, it gets the global this which is an empty object.
+// // So its solution is to bind obj to the context for extractFunc - obj.func.bind(obj);
+// let extractFunc2 = obj.func.bind(obj);
+// console.log(extractFunc2()); // 1
+
+// 23.
+
+// let array = [];
+// array[0] = "a";
+// array[1] = "b";
+// array.foo = "c";
+// console.log(array);
+// console.log(array.length); // 2 - bcz array is filled for index 0 and 1, and length will implicitly reflects the highest assigned index + 1, thus 2 and foo just becomes a property in array like length not an element.
+// console.log(array.foo);
+// console.log(Object.getOwnPropertyDescriptors(array));
