@@ -91,9 +91,25 @@
 
 // 16.
 
-let a = [1, 2, 3];
-let b = [1, 2, 3];
-let c = "1,2,3";
-console.log(a == c); // true
-console.log(b == c); // true
-console.log(a == b); // false
+// let a = [1, 2, 3];
+// let b = [1, 2, 3];
+// let c = "1,2,3";
+// console.log(a == c); // true
+// console.log(b == c); // true
+// console.log(a == b); // false
+
+// 17.
+
+console.log([] == ![]); // true - pata nhi kyun
+console.log(typeof []); // object
+console.log(typeof ![]); // boolean
+console.log(Boolean([])); // true
+console.log(Boolean(![])); // false
+console.log(Boolean([]) == Boolean(![])); // false
+console.log(true == false); // false
+
+// 18.
+
+// "![]" is falsy here
+if (![]) console.log(`it is truthy`);
+else console.log(`it is falsy`);
