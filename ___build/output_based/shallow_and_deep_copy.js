@@ -12,35 +12,39 @@
 // console.log(obj1);
 // console.log(obj2);
 
+// let obj3 = obj1;
+
+// console.log(obj1 === obj3);
+
 //
 //
 //
 //
 // deep copy
 
-function deepCopy(obj) {
-  // Handle primitive types and null/undefined
-  if (typeof obj !== "object" || obj === null) {
-    return obj;
-  }
+// function deepCopy(obj) {
+//   // Handle primitive types and null/undefined
+//   if (typeof obj !== "object" || obj === null) {
+//     return obj;
+//   }
 
-  // Create a new object with the same properties
-  const newObj = Array.isArray(obj) ? [] : {};
+//   // Create a new object with the same properties
+//   const newObj = Array.isArray(obj) ? [] : {};
 
-  for (const key in obj) {
-    newObj[key] = deepCopy(obj[key]); // Recursively copy nested objects
-  }
+//   for (const key in obj) {
+//     newObj[key] = deepCopy(obj[key]); // Recursively copy nested objects
+//   }
 
-  return newObj;
-}
+//   return newObj;
+// }
 
-let obj1 = { name: "Alice", age: 30, hobbies: ["reading", "coding"] };
-let obj2 = deepCopy(obj1);
+// let obj1 = { name: "Alice", age: 30, hobbies: ["reading", "coding"] };
+// let obj2 = deepCopy(obj1);
 
-console.log(obj1 === obj2); // false (different objects)
-console.log(obj1.hobbies === obj2.hobbies); // false (different references for nested objects)
+// console.log(obj1 === obj2); // false (different objects)
+// console.log(obj1.hobbies === obj2.hobbies); // false (different references for nested objects)
 
-obj2.hobbies.push("gaming");
+// obj2.hobbies.push("gaming");
 
-console.log(obj1.hobbies); // ["reading", "coding"] (original object remains unchanged)
-console.log(obj2.hobbies); // ["reading", "coding", "gaming"]
+// console.log(obj1.hobbies); // ["reading", "coding"] (original object remains unchanged)
+// console.log(obj2.hobbies); // ["reading", "coding", "gaming"]
