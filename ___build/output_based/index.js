@@ -163,3 +163,7 @@
 // console.log(array.length); // 2 - bcz array is filled for index 0 and 1, and length will implicitly reflects the highest assigned index + 1, thus 2 and foo just becomes a property in array like length not an element.
 // console.log(array.foo);
 // console.log(Object.getOwnPropertyDescriptors(array));
+
+// 24.
+
+console.log(Math.max());
