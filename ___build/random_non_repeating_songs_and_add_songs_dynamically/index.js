@@ -3,7 +3,7 @@
 // feature to play a song at randon from a playlist such that the song will not get repeated.
 // Also what if songs are added to the playlist dynamically.
 
-// let's assume we've a playlist array with songs' objects (for reference I'm taking number in the array)
+// let's assume we've a playlist array with songs' objects (for reference I'm taking numbers in the array)
 const playlist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let lastIndex = playlist.length - 1; // for keeping the last index of playlist so that I can play the song and shuffle that song to the end.
 
