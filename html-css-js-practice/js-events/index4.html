@@ -17,20 +17,40 @@
     const text = document.querySelector("#text");
     let intervalRef;
 
+    // start.addEventListener("click", (e) => {
+    //   intervalRef = setInterval(
+    //     (str) => {
+    //       const newText = document.createElement("p");
+    //       newText.textContent = str;
+    //       text.appendChild(newText);
+    //     },
+    //     500,
+    //     "Hello World!"
+    //   );
+    // }); // in this scenario, when we accidentally double click on start, it will start a new setInterval with a new id, and will lose the previous interval ID which will make the interval run for inifinity, now to stop this:
+
     start.addEventListener("click", (e) => {
-      intervalRef = setInterval(
-        (str) => {
-          const newText = document.createElement("p");
-          newText.textContent = str;
-          text.appendChild(newText);
-        },
-        500,
-        "Hello World!"
-      );
+      // just check if the intervalRef is already assigned an interval ID or not
+      if (!intervalRef) {
+        intervalRef = setInterval(
+          (str) => {
+            const newText = document.createElement("p");
+            newText.textContent = str;
+            text.appendChild(newText);
+          },
+          500,
+          "Hello World!"
+        );
+      }
     });
 
     stop.addEventListener("click", (e) => {
-      clearInterval(intervalRef);
+      // also here just check if intervalRef is present or not, or interval started or not
+      if (intervalRef) {
+        clearInterval(intervalRef);
+        // and put null in intervalRef for it to be checked for starting it
+        intervalRef = null;
+      }
     });
   </script>
 </html>
