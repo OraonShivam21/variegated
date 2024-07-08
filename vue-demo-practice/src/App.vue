@@ -18,18 +18,35 @@ const counter = ref({
 <!-- ---------------------------- -->
 
 <!-- Attribute Binding -->
-<script setup>
+<!-- <script setup>
 import { ref } from 'vue'
 
 const titleClass = ref('title')
 </script>
 
 <template>
-  <h1 :class="titleClass">Make me red</h1> <!-- add dynamic class binding here -->
+  <h1 :class="titleClass">Make me red</h1>
 </template>
 
 <style>
 .title {
   color: red;
 }
-</style>
+</style> -->
+
+<!-- ---------------------------- -->
+
+<!-- Event listeners -->
+<!-- <script setup>
+import { ref } from 'vue'
+
+const count = ref(0)
+
+const increment = () => {
+  count.value++;
+}
+</script>
+
+<template>
+  <button @click="increment">Count is: {{ count }}</button>
+</template> -->
